@@ -18,13 +18,15 @@ namespace LoyaltySystem.Business.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            //1-m relationship between User and TransactionLog (CreatedBy)
 
             modelBuilder.Entity<TransactionLog>()
                 .HasOne(d => d.CreatedByNavigation)
                 .WithMany(p => p.TransactionLogCreatedByNavigations)
                 .HasForeignKey(d => d.CreatedBy)
                 .HasConstraintName("FK_TransactionLogs_CreatedByNavigation");
+
+            //1-m relationship between User and TransactionLog(UpdatedBy)
 
             modelBuilder.Entity<TransactionLog>()
                 .HasOne(d => d.UpdatedByNavigation)
